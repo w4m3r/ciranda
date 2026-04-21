@@ -4,24 +4,40 @@ permissions:
   contents: write
 
 on:
-  push:
-    tags:
-      - "v*"
+  workflow_run:
+    workflows:
+      - crates.io Publish
+    types:
+      - completed
 
 jobs:
   github-release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
+          ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 0
 
-      - name: Verify tag is reachable from main
+      - name: Resolve release tag
         run: |
-          git fetch origin main
-          git merge-base --is-ancestor "$GITHUB_SHA" origin/main
+          git fetch origin 'refs/tags/v*:refs/tags/v*'
+
+          published_sha="${{ github.event.workflow_run.head_sha }}"
+          tags="$(git tag --points-at "$published_sha" --list 'v*')"
+          count="$(printf '%s\n' "$tags" | sed '/^$/d' | wc -l)"
+
+          if [ "$count" -ne 1 ]; then
+            echo "Expected exactly one v* tag pointing at $published_sha"
+            printf '%s\n' "$tags"
+            exit 1
+          fi
+
+          tag="$tags"
+          echo "RELEASE_TAG=$tag" >> "$GITHUB_ENV"
 
       - name: Install stable Rust
         uses: dtolnay/rust-toolchain@stable
@@ -31,8 +47,8 @@ jobs:
           version="$(cargo metadata --no-deps --format-version 1 \
             | jq -r '.packages[] | select(.name == "ciranda") | .version')"
 
-          if [ "$GITHUB_REF_NAME" != "v$version" ]; then
-            echo "Tag $GITHUB_REF_NAME does not match Cargo.toml version $version"
+          if [ "$RELEASE_TAG" != "v$version" ]; then
+            echo "Tag $RELEASE_TAG does not match Cargo.toml version $version"
             exit 1
           fi
 
@@ -45,7 +61,7 @@ jobs:
       - name: Package release asset
         run: |
           target="$(rustc -vV | sed -n 's/^host: //p')"
-          asset="ciranda-$GITHUB_REF_NAME-$target.tar.gz"
+          asset="ciranda-$RELEASE_TAG-$target.tar.gz"
 
           mkdir -p dist/package
           cp target/release/ciranda dist/package/ciranda
@@ -59,11 +75,11 @@ jobs:
         run: |
           asset="$(find dist -maxdepth 1 -name 'ciranda-*.tar.gz' -print)"
 
-          gh release create "$GITHUB_REF_NAME" \
+          gh release create "$RELEASE_TAG" \
             "$asset" \
             "$asset.sha256" \
             --verify-tag \
-            --title "$GITHUB_REF_NAME" \
+            --title "$RELEASE_TAG" \
             --generate-notes
         env:
           GH_TOKEN: ${{ github.token }}
