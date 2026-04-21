@@ -1,0 +1,11 @@
+# cargo
+debug/
+target/
+
+# rustfmt
+**/*.rs.bk
+
+# llms
+.claude/
+.codex
+AGENTS.md

@@ -1,0 +1,10 @@
+[package]
+name = "ciranda"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+argon2 = "0.5"
+blake3 = "1"
+arboard = "3"
+dialoguer = "0.12"
