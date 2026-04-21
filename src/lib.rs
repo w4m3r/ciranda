@@ -1,4 +1,15 @@
-#![doc = include_str!("../README.md")]
+//! ![Apache2.0/MIT][license-badge] [![GitHub][github-badge]][repo]
+//!
+//! Deterministic password generation.
+//!
+//! Ciranda derives the same password from the same seed, context, password
+//! settings, and Argon2 settings.
+//!
+//! Start with [`enhance`] for the main API.
+//!
+//! [license-badge]: https://img.shields.io/badge/license-Apache2.0/MIT-blue.svg
+//! [github-badge]: https://img.shields.io/badge/GitHub-repo-black?logo=github
+//! [repo]: https://github.com/w4m3r/ciranda
 
 mod kdf;
 mod password_construction;
