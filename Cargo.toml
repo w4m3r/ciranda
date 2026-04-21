@@ -1,7 +1,17 @@
 [package]
 name = "ciranda"
 version = "0.1.0"
+description = "A deterministic password generator"
+homepage = "https://w4m3r.github.io/ciranda"
+repository = "https://github.com/w4m3r/ciranda"
+keywords = ["cryptography", "hash", "hashing", "kdf", "password"]
+categories = ["command-line-utilities", "security"]
+readme = "README.md"
+license = "Apache-2.0 OR MIT"
 edition = "2024"
+exclude = [
+    "assets/*",
+]
 
 [dependencies]
 argon2 = "0.5"
