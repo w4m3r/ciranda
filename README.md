@@ -78,7 +78,7 @@ recommended rotation mechanism. For rotation:
 
 - [Design documentation](docs/README.md)
 - [Design overview](docs/design.md)
-- [Roadmap](docs/roadmap/index.md)
+- [Roadmap](https://github.com/users/w4m3r/projects/1)
 
 ## Dependencies
 
