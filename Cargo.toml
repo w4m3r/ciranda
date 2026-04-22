@@ -1,6 +1,6 @@
 [package]
 name = "ciranda"
-version = "0.1.0"
+version = "0.1.1"
 description = "A deterministic password generator"
 homepage = "https://w4m3r.github.io/ciranda"
 repository = "https://github.com/w4m3r/ciranda"
