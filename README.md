@@ -1,6 +1,17 @@
 # Ciranda
 
+[![crates.io][crates-badge]][crates]
+[![docs.rs][docs-badge]][docs]
+[![CI][ci-badge]][ci]
 ![Apache2.0/MIT](https://img.shields.io/badge/license-Apache2.0/MIT-blue.svg)
+
+[crates-badge]: https://img.shields.io/crates/v/ciranda.svg
+[crates]: https://crates.io/crates/ciranda
+[docs-badge]: https://img.shields.io/docsrs/ciranda
+[docs]: https://docs.rs/ciranda
+[ci-badge]: https://github.com/w4m3r/ciranda/actions/workflows/ci.yml/badge.svg
+[ci]: https://github.com/w4m3r/ciranda/actions/workflows/ci.yml
+
 
 A deterministic password generator written in Rust: given the same inputs, it
 always produces the same password. Memorize one master seed and derive unique
