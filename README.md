@@ -30,7 +30,8 @@ passwords per context.
 ## Usage
 
 ```bash
-cargo run --release
+cargo install ciranda
+ciranda
 ```
 
 The user will be prompted for:
