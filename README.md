@@ -27,14 +27,21 @@ passwords per context.
 
 — Chico Science
 
-## Usage
+## Installation
+
+Download an executable from the
+[releases page](https://github.com/w4m3r/ciranda/releases) or use
+[Cargo](https://doc.rust-lang.org/cargo):
 
 ```bash
 cargo install ciranda
-ciranda
 ```
 
-The user will be prompted for:
+## Usage
+
+![Ciranda cover](assets/usage.gif)
+
+When Ciranda is executed, it prompts the user for:
 
 - **seed** — a master secret, entered hidden and confirmed
 - **context** — identifier for the password (e.g. `github`)
