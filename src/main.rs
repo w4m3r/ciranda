@@ -23,12 +23,12 @@ where
 
 fn prompt_pass_len() -> u32 {
     Input::<u32>::new()
-        .with_prompt("pass_len")
+        .with_prompt("length")
         .validate_with(|value: &u32| {
             if *value < MIN_PASSWORD_LENGTH {
-                Err(format!("pass_len must be at least {MIN_PASSWORD_LENGTH}"))
+                Err(format!("length must be at least {MIN_PASSWORD_LENGTH}"))
             } else if *value > MAX_PASSWORD_LENGTH {
-                Err(format!("pass_len must be at most {MAX_PASSWORD_LENGTH}"))
+                Err(format!("length must be at most {MAX_PASSWORD_LENGTH}"))
             } else {
                 Ok(())
             }

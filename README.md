@@ -38,7 +38,7 @@ The user will be prompted for:
 
 - **seed** — a master secret, entered hidden and confirmed
 - **context** — identifier for the password (e.g. `github`)
-- **pass_len** — desired password length in characters (between `4` and `128`)
+- **length** — desired password length in characters (between `4` and `128`)
 - **character sets** — uppercase, lowercase, digits, and/or special characters
 - **Argon2 profile** — derivation cost preset (`Development`, `Standard`, or
   `Hardened`)
