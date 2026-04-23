@@ -18,7 +18,7 @@ The CLI prompts for:
 
 - `seed`: the master secret, entered hidden and confirmed
 - `context`: a service, account, or domain label
-- `pass_len`: the desired password length, from `4` to `128`
+- `length`: the desired password length, from `4` to `128`
 - `character sets`: uppercase, lowercase, digits, and/or special characters
 - `Argon2 profile`: the named derivation-cost profile
 
