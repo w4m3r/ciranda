@@ -39,7 +39,7 @@ cargo install ciranda
 
 ## Usage
 
-![Ciranda cover](assets/usage.gif)
+![Ciranda usage](assets/usage.gif)
 
 When Ciranda is executed, it prompts the user for:
 
