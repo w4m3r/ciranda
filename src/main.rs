@@ -11,6 +11,8 @@ use ciranda::{
     PasswordSettings, enhance,
 };
 
+const VERSION: &str = env!("CARGO_PKG_VERSION");
+
 fn prompt<T: Clone + ToString + FromStr>(label: &str) -> T
 where
     <T as FromStr>::Err: Display,
@@ -106,6 +108,8 @@ fn prompt_character_sets() -> CharacterSets {
 }
 
 fn main() {
+    eprintln!("Ciranda v{VERSION}");
+
     let seed = prompt_seed();
     let context: String = prompt("context");
     let pass_len = prompt_pass_len();
